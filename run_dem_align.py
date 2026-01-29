@@ -2,13 +2,13 @@ from demcoreg import dem_align as da
 import os
 
 def main():
-    src_dems = [ r"Y:\ATD\Drone Data Processing\Exports\East_Troublesome\LPM\LPM_Intersection_PA3_RMSE_018 Exports\LPM_Intersection_PA3_RMSE_018____LPM_081222_PostError_PCFiltered_DEM.tif",   
+    src_dems = [ r"F:\dem_coreg\lbc_dems\pre_flood\2021\rasters_USGS1m\output_USGS1m.tif",   
                 ]    
     
     for src in src_dems:    
         kwargs = {
-            'ref_dem_fn': r"Y:\ATD\Drone Data Processing\Exports\East_Troublesome\LPM\LPM_Intersection_PA3_RMSE_018 Exports\LPM_Intersection_PA3_RMSE_018____LPM_102123_PostError_PCFiltered_DEM.tif",# Fixed Reference DEM
-            'src_dem_fn': src, # Source DEM to be shifted
+            'ref_dem_fn': r"F:\dem_coreg\lbc_dems\pre_flood\2021\rasters_USGS1m\output_USGS1m.tif",# Fixed Reference DEM
+            'src_dem_fn': r"F:\dem_coreg\lbc_dems\post_flood\2023_lbc_dem.tif", # Source DEM to be shifted
             'mode': 'nuth', # Co-registration mode to use; choices= 'ncc', 'sad', 'nuth', 'none'
             'mask_list': [],  # choices = 'toa', 'snodas', 'modscag', 'bareground', 'glaciers', 'nlcd', 'none'. See demcoreg/dem_mask.py for more
             'max_offset': 100, # Maximum horizontal offset expected between DEMs, used to limit search space
@@ -19,7 +19,7 @@ def main():
             'res': 'min', # Resolution strategy for the alignment; 'max' prioritizes the higher resolution of the two DEMs, 'min' the lower, 'common_scale_factor' the lower scaled to the higher
             'max_iter': 30, # Maximum number of iterations to perform in seeking alignment  
             'tol': 0.02, # Tolerance threshold for iterative process; smaller changes than this will end the iteration
-            'outdir': r"Y:\ATD\Drone Data Processing\Alignment_Tests\LPM_Aligned_with_LIDAR\1m co-alignment" # Output directory for aligned DEMs
+            'outdir': r"F:\dem_coreg\lbc_dems\output_jan28_2026" # Output directory for aligned DEMs
         }
         #make sure the output directory exists
         if not os.path.exists(kwargs['outdir']):
